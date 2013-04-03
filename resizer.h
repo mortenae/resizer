@@ -20,39 +20,9 @@
 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-#include "resizer.h"
-#include <stdio.h>
-#include <windows.h>
+#ifndef RESIZER_H
+#define RESIZER_H
 
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
-	HWND handle;
-	RECT desktop;
-	int desktop_x, desktop_y, desktop_width, desktop_height;
-	int window_x, window_y, window_width, window_height;
+#define IDI_RESIZER 1
 
-	Sleep(1000);
-	handle = GetForegroundWindow();
-
-	if(handle == NULL)
-	{
-		MessageBeep(MB_ICONERROR);
-		return 1;
-	}
-
-	SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
-
-	desktop_width = desktop.right - desktop.left;
-	desktop_height = desktop.bottom - desktop.top;
-	desktop_x = desktop.left;
-	desktop_y = desktop.top;
-
-	window_width = desktop_width * 3 / 4;
-	window_height = desktop_height * 3 / 4;
-	window_x = desktop_x + (desktop_width - window_width) / 2;
-	window_y = desktop_y + (desktop_height - window_height) / 2;
-
-	SetWindowPos(handle, HWND_DESKTOP, window_x, window_y, window_width, window_height, 0);
-
-	return 0;
-}
+#endif
